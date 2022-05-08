@@ -12,19 +12,31 @@
 
     <!-- 准备好一个容器 -->
     <div id="root">
-        <h1>Hello,{{name}}</h1>
+        <h1>插值语法</h1>
+        <h3>Hello,{{name}},{{Date.now()}}</h3>
+
+        <h1>指令语法</h1>
+        <a v-bind:href="url.toUpperCase()">点我链接到{{blog.name1}}</a>
+        <!-- v-bind： 简写 -->
+        <a :href="url">点我链接到{{blog.name2}}</a>
     </div>
 
     <script type="text/javascript">
         Vue.config.productionTip = false //阻止vue在启动时生成生产提示
 
         // 创建Vue实例
-        const x = new Vue({
+        new Vue({
             // el:document.getElementById('root') 不常用，作为了解
             el: '#root', //el用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串
 
             data: { // data中用于存储数据，数据供el所指定的容器使用
-                name: 'xx'
+                name: 'xx',
+                url:"http://xxxerxes.github.io",
+                // 层级结构
+                blog:{
+                    name1:"Blog1",
+                    name2:"Blog2"
+                }
             }
         })
     </script>
