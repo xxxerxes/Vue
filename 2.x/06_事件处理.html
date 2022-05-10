@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+        *{
+            margin-top: 20px;
+        }
+        .demo1{
+            height: 50ox;
+            background-color: skyblue;
+        }
+        .box1{
+            padding: 5px;
+            background-color: skyblue;
+        }
+        .box2{
+            padding: 5px;
+            background-color: orange;
+        }
+        .list{
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            /* 滚动条 */
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <h2>Hello,{{name}}</h2>
+        <button v-on:click="showInfo1">点我提示1</button>
+        <!-- 简写 -->
+        <button @click="showInfo2($event,xx)">点我提示2</button>
+
+        <!-- 阻止默认事件（常用） -->
+        <a href="xxxerxes.github.io" @click.prevent="showInfo">点我提示信息</a>
+        <!-- 阻止事件冒泡（常用） -->
+        <div class="demo1" @click="showInfo">
+            <button @click.stop="showInfo">点我提示信息</button>
+        </div>
+        <!-- 事件只触发一次（常用） -->
+        <button @click.once="showInfo">点我提示信息</button>
+        <!-- 使用事件的捕获模式 -->
+        <div class="box1" @click.capture="showMsg(1)">
+            div1
+            <div class="box2" @click="showMsg(2)">
+                div2
+            </div>
+        </div>
+        <!-- 只有event.target是当前操作的元素时才触发事件 -->
+        <div class="demo1" @click.self="showInfo">
+            <button @click="showInfo">点我提示信息</button>
+        </div>
+        <!-- 事件的默认行为立即执行，无需等待事件回调执行完毕 -->
+        <ul @wheel.passive="demo" class="list">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        // 创建Vue实例
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: 'xx'
+            },
+            methods:{
+                showInfo1(event){
+                    //console.log(event.target.innerText)
+                    //console.log(this) //此处的this是vm
+                    alert("hello")
+                },
+                showInfo2(event,name){
+                    alert("hi")
+                },
+                showInfo(event){
+                    //event.preventDefault()
+                    alert("hello!")
+                },
+                showMsg(msg){
+                    console.log(msg)
+                },
+                demo(){
+                    console.log('@')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

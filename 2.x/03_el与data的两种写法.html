@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>el与data的两种写法</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h1>{{name}}</h1>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false //阻止vue在启动时生成生产提示
+
+        // 创建Vue实例
+        const v = new Vue({
+            // el: '#root', //第一种写法
+
+            // data: { // data的第一种写法，对象式
+            //     name: 'xx'
+            // }
+
+            data() {
+                return {
+                    name: 'xx'
+                }
+            }
+        })
+        v.$mount('#root') // 第二种写法
+
+    </script>
+
+</body>
+
+</html>

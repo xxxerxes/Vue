@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        FirstName<input type="text" v-model="firstName"><br/>
+        LastName<input type="text" v-model="lastName"><br/>
+        FullName<span>{{fullName}}</span>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    // 创建Vue实例
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            firstName: '张',
+            lastName:'三'
+        },
+        computed:{
+            fullName:{
+                get(){
+                    return this.firstName + '-' + this.lastName
+                },
+                set(value){
+                    const arr = value.split('-')
+                    this.firstName = arr[0]
+                    this.lastName = arr[1]
+                }
+            }
+        }
+    })
+</script>
+</html>

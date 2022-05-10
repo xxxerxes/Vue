@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>键盘事件处理</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo">
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    // 创建Vue实例
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            name: 'xx'
+        },
+        methods: {
+            showInfo(event) {
+                //if(event.keyCode!=13) return
+                console.log(event.target.value)
+            }
+        },
+    })
+</script>
+
+</html>
