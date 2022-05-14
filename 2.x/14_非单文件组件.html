@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>非单文件组件</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <school></school>
+        <student></student>
+        <global></global>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const student = Vue.extend({
+        template: `
+            <div>
+                <h3>姓名：{{name}}</h3>
+                <h3>年龄：{{age}}</h3>
+                <button @click="show">点我</button>
+            </div>
+        `,
+        data() {
+            return {
+                name: 'xx',
+                age: 18
+            }
+        },
+        methods: {
+            show(){
+                alert(this.name)
+            }
+        },
+    })
+
+    const school = Vue.extend({
+        template: `
+            <div>
+                <h3>学校名：{{name}}</h3>
+                <h3>地址：{{address}}</h3>
+            </div>
+        `,
+        data() {
+            return {
+                name: 'xxSchool',
+                address: 'xxPlace'
+            }
+        }
+    })
+
+    const global = Vue.extend({
+        template:`
+        <h1>hello<h1>
+        `
+    })
+
+    Vue.component('global',global)
+
+    // 创建Vue实例
+    const vm = new Vue({
+        el: '#root',
+        components:{
+            student,
+            school
+        }
+    })
+</script>
+
+</html>

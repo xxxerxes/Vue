@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>绑定样式</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 绑定class样式——字符串，适用于：样式多类名不确定，需要动态指定 -->
+        <div class="basic" :class="type" @click="changeType">{{name}}</div>
+        <!-- 绑定class样式——数组写法，适用于：要绑定的样式个数不确定、名字也不确定 -->
+        <div class="basic" :class="typeArr">{{name}}</div>
+        <!-- 绑定class样式——对象写法，适用于：要绑定的样式个数确定、名字也确定，但要动态决定是否使用 -->
+        <div class="basic" :class="typeObj">{{name}}</div>
+
+        <!-- 绑定style样式——对象写法 -->
+        <div class="basic" :style="styleObj">{{name}}</div>
+        <!-- 绑定style样式——数组写法 -->
+        <div class="basic" :style="styleArr">{{name}}</div>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    // 创建Vue实例
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            name: 'xx',
+            type: 'normal',
+            typeArr: ['type1', 'type2', 'type3'],
+            typeObj: {
+                type1: false,
+                type2: false,
+                type3: true
+            },
+            styleObj: {
+                fontSize: '40px',
+                color: 'red'
+            },
+            styleObj2: {
+                backgroudColor: 'orange'
+            },
+            styleArr: [
+                {
+                    fontSize: '40px',
+                    color: 'red'
+                },
+                {
+                    backgroudColor: 'orange'
+                },
+            ]
+        },
+        methods: {
+            changeType() {
+                const arr = ['normal', 'type1', 'type2']
+                this.type = arr[Math.floor(Math.random() * 3)]
+            }
+        },
+    })
+</script>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>列表渲染</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <ul>
+            <li v-for="(p,index) in persons" :key="index">
+                {{p.name}}-{{p.age}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    // 创建Vue实例
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            name: 'xx',
+            keyword: '',
+            sortType: 0, // 0:原顺序，1:降序，2:升序
+            persons: [
+                { id: '001', name: '张三', age: 18 },
+                { id: '002', name: '李四', age: 19 },
+                { id: '003', name: '王五', age: 20 },
+            ]
+        },
+        computed: {
+            searchPerson() {
+                const arr = this.persons.filters((p) => {
+                    return p.name.indexOf(this.keyword) !== -1
+                })
+
+                // 判断是否需要排序
+                if (this.sortType) {
+                    arr.sort((a, b) => {
+                        return this.sortType === 1 ? b.age - a.age : a.age - b.age
+                    })
+                }
+                return arr
+            }
+        }
+    })
+</script>
+
+</html>
