@@ -8,6 +8,77 @@
 </head>
 
 <body>
+    <div id="root"></div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    // 1. 定义组件 
+    const student = {
+        template: `
+            <div>
+                <h3>姓名：{{name}}</h3>
+                <h3>年龄：{{age}}</h3>
+                <button @click="show">点我</button>
+            </div>
+        `,
+        data() {
+            return {
+                name: 'xx',
+                age: 18
+            }
+        },
+        methods: {
+            show(){
+                alert(this.name)
+            }
+        },
+    }
+
+    const school = {
+        template: `
+            <div>
+                <h3>学校名：{{name}}</h3>
+                <h3>地址：{{address}}</h3>
+            </div>
+        `,
+        data() {
+            return {
+                name: 'xxSchool',
+                address: 'xxPlace'
+            }
+        }
+    }
+
+    const hello = {
+        template:'<h1>hello<h1>' 
+    }
+
+    const app = {
+        template:`
+        <div>
+            <school></school>
+            <student></student>
+            <hello></hello>
+        </div>
+        `,
+        components:{
+            student,
+            school,
+            hello
+        }
+    }
+
+    // 创建Vue实例
+    const vm = new Vue({
+        el: '#root',
+        template:'<app></app>',
+        // 2. 注册组件
+        components:{app}
+    })
+</script>
+
+<!-- <body>
     <div id="root">
         <school></school>
         <student></student>
@@ -69,6 +140,6 @@
             school
         }
     })
-</script>
+</script> -->
 
 </html>
